@@ -1,5 +1,7 @@
 import React from "react"; 
 
+import 'components/InterviewerList';
+
 const InterviewerList = () => {
   return (
     <section className="interviewers">
