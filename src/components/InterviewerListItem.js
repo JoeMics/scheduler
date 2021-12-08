@@ -5,14 +5,13 @@ import 'components/InterviewerListItem.scss'
 
 const InterviewerListItem = (props) => {
   /* 
-  * id: int,
   * name: str
   * avatar: str - url
   * setInterviewer: function to set the interviewer
   * selected: bool
   */
 
-  const { id, name, avatar, setInterviewer, selected } = props;
+  const { name, avatar, setInterviewer, selected } = props;
 
   const interviewerItemClass = classNames({
     "interviewers__item" : true,
@@ -22,7 +21,7 @@ const InterviewerListItem = (props) => {
   return (
     <li 
       className={interviewerItemClass}
-      onClick={() => setInterviewer(id)} 
+      onClick={setInterviewer} 
       selected={selected}
     >
       <img

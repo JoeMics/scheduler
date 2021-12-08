@@ -15,10 +15,11 @@ const InterviewerList = (props) => {
   const interviewerListItemArray = interviewers.map(person => {
     return (
       <InterviewerListItem 
-        {...person}
         selected={person.id === interviewer}
-        setInterviewer={setInterviewer}
+        setInterviewer={() => setInterviewer(person.id)}
         key={person.id}
+        name={person.name}
+        avatar={person.avatar}
       />
     );
   });
