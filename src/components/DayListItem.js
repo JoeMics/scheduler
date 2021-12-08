@@ -12,6 +12,7 @@ const DayListItem = (props) => {
     'day-list__item--full': spots === 0,
   });
 
+  // returns a string corresponding to spots
   const formatSpots = (spots) => {
     if (spots === 1) {
       return '1 spot remaining';
