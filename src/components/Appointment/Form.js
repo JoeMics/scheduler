@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "components/Button";
 import InterviewerList from "components/InterviewerList";
 
 const Form = (props) => {
   /* props - editing
-  student:String
-  interviewer:Number
+  student:String, optional
+  interviewer:Number, optional
   interviewers:Array
   onSave:Function
   onCancel:Function 
@@ -17,9 +17,11 @@ const Form = (props) => {
   onCancel:Function
    */
 
+  // Handles conditional props
+  const [student, setStudent] = useState(props.student || '');
+  const [interviewer, setInterviewer] = useState(props.interviewer || null);
+
   const {
-    student,
-    interviewer,
     interviewers,
     onSave,
     onCancel,
@@ -34,14 +36,14 @@ const Form = (props) => {
             name="name"
             type="text"
             placeholder="Enter Student Name"
-            /*
-              This must be a controlled component
-              your code goes here
-            */
+            value={student}
+            onChange={(event) => setStudent(event.target.value)}
           />
         </form>
-        <InterviewerList 
-        interviewers={interviewers}
+        <InterviewerList
+          interviewers={interviewers}
+          value={interviewer}
+          onChange={setInterviewer}
         />
       </section>
       <section className="appointment__card-right">

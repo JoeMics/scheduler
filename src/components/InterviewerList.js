@@ -6,7 +6,7 @@ import 'components/InterviewerList.scss';
 const InterviewerList = (props) => {
   /* props:
   interviewers: array of objects
-  setInterviewer: function that accepts interviewer id
+  onChange: function that accepts interviewer id
     pass down to InterviewerListItem
   value:number, id of selected interviewer
    */
