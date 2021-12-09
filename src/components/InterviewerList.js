@@ -8,18 +8,18 @@ const InterviewerList = (props) => {
   interviewers: array of objects
   setInterviewer: function that accepts interviewer id
     pass down to InterviewerListItem
-  interviewer:number, id of selected interviewer
+  value:number, id of selected interviewer
    */
-  const { interviewers, setInterviewer, interviewer } = props;
+  const { interviewers, onChange, value } = props;
 
-  const interviewerListItemArray = interviewers.map(person => {
+  const interviewerListItemArray = interviewers.map(interviewer => {
     return (
       <InterviewerListItem 
-        selected={person.id === interviewer}
-        setInterviewer={() => setInterviewer(person.id)}
-        key={person.id}
-        name={person.name}
-        avatar={person.avatar}
+        selected={interviewer.id === value}
+        setInterviewer={() => onChange(interviewer.id)}
+        key={interviewer.id}
+        name={interviewer.name}
+        avatar={interviewer.avatar}
       />
     );
   });
