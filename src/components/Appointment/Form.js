@@ -36,7 +36,7 @@ const Form = (props) => {
   const cancel = () => {
     reset();
     onCancel();
-  }
+  };
 
   return (
     <main className="appointment__card appointment__card--create">
