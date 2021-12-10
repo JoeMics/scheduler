@@ -22,13 +22,16 @@ const Application = (props) => {
     const baseUrl = 'http://localhost:8001/api';
 
     // ALL promises need to resolve for component to render
-    const daysPromise = axios.get(`${baseUrl}/days`);
-    const appointmentsPromise = axios.get(`${baseUrl}/appointments`);
+    const statePromises = [
+      axios.get(`${baseUrl}/days`),
+      axios.get(`${baseUrl}/appointments`),
+      axios.get(`${baseUrl}/interviewers`)
+    ];
 
-    Promise.all([daysPromise, appointmentsPromise])
-    .then((all) => {
+    Promise.all(statePromises).then((all) => {
       const days = all[0].data;
       const appointments = all[1].data;
+      const interviewers = all[2].data;
 
       setState((prev) => ({...prev, days, appointments}));
     });
