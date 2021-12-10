@@ -19,7 +19,7 @@ const Application = (props) => {
 
   // API request to GET days, and appointments
   useEffect(() => {
-    const baseUrl = 'http://localhost:8001/api'
+    const baseUrl = 'http://localhost:8001/api';
 
     // ALL promises need to resolve for component to render
     const daysPromise = axios.get(`${baseUrl}/days`);
@@ -31,7 +31,7 @@ const Application = (props) => {
       const appointments = all[1].data;
 
       setState((prev) => ({...prev, days, appointments}))
-    })
+    });
   }, []);
 
   // Render appointments in Appointment components
@@ -68,6 +68,6 @@ const Application = (props) => {
       </section>
     </main>
   );
-}
+};
 
 export default Application;
