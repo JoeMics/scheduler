@@ -1,5 +1,5 @@
-import React from "react";
-import classNames from "classnames";
+import React from 'react';
+import classNames from 'classnames';
 
 import 'components/InterviewerListItem.scss';
 
@@ -14,8 +14,8 @@ const InterviewerListItem = (props) => {
   const { name, avatar, setInterviewer, selected } = props;
 
   const interviewerItemClass = classNames({
-    "interviewers__item" : true,
-    "interviewers__item--selected": selected,
+    'interviewers__item' : true,
+    'interviewers__item--selected': selected,
   });
 
   return (

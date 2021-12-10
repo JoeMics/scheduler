@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
-import DayList from "./DayList";
-import Appointment from "./Appointment";
-import { getAppointmentsForDay } from "helpers/selectors";
+import DayList from './DayList';
+import Appointment from './Appointment';
+import { getAppointmentsForDay } from 'helpers/selectors';
 
-import "components/Application.scss";
+import 'components/Application.scss';
 
 const Application = (props) => {
   const [state, setState] = useState({
-    day: "Monday",
+    day: 'Monday',
     days: [],
     appointments: {},
   });
@@ -30,7 +30,7 @@ const Application = (props) => {
       const days = all[0].data;
       const appointments = all[1].data;
 
-      setState((prev) => ({...prev, days, appointments}))
+      setState((prev) => ({...prev, days, appointments}));
     });
   }, []);
 

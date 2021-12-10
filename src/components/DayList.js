@@ -1,5 +1,5 @@
-import React from "react";
-import DayListItem from "./DayListItem";
+import React from 'react';
+import DayListItem from './DayListItem';
 
 const DayList = (props) => {
   /* props

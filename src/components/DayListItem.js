@@ -1,5 +1,5 @@
-import React from "react";
-import classNames from "classnames";
+import React from 'react';
+import classNames from 'classnames';
 
 import 'components/DayListItem.scss';
 
@@ -23,7 +23,7 @@ const DayListItem = (props) => {
     }
 
     return `${spots} spots remaining`;
-  }
+  };
 
   return (
     <li className={dayClass} onClick={() => setDay(props.name)}>

@@ -1,5 +1,5 @@
-import React from "react"; 
-import InterviewerListItem from "./InterviewerListItem";
+import React from 'react'; 
+import InterviewerListItem from './InterviewerListItem';
 
 import 'components/InterviewerList.scss';
 
