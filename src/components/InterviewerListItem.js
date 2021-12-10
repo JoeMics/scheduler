@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 
-import 'components/InterviewerListItem.scss'
+import 'components/InterviewerListItem.scss';
 
 const InterviewerListItem = (props) => {
   /* 
