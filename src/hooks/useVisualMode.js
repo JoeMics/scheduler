@@ -7,8 +7,15 @@ import { useState } from 'react';
 const useVisualMode = (initMode) => {
   const [mode, setMode] = useState(initMode);
 
+  const transition = (newMode) => {
+    // take in new mode as parameter
+    // update mode state using setMode
+    setMode((prev) => newMode);
+  };
+
   return {
     mode,
+    transition,
   };
 };
 
