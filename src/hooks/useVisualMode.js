@@ -19,11 +19,16 @@ const useVisualMode = (initial) => {
   const back = () => {
     // go back to previous mode
     setHistory((prev) => {
-     const newHistory = [...prev.slice(0, prev.length - 1)];
+      // prevents going back if at initial
+      if (prev.length === 1) {
+        return prev;
+      }
 
-    // update current mode
-     setMode(newHistory[newHistory.length - 1]);
-     return newHistory;
+      const newHistory = [...prev.slice(0, prev.length - 1)];
+
+      // update current mode
+      setMode(newHistory[newHistory.length - 1]);
+      return newHistory;
     });
   };
 
