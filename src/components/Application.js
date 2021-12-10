@@ -55,15 +55,21 @@ const Application = (props) => {
     appointments: {},
   });
   const setDay = (day) => setState({ ...state, day });
-  const setDays = (days) => setState((prev) => ({ ...prev, days }))
 
   // API request to "days" array
   useEffect(() => {
-    const baseUrl = 'http://localhost:8001'
-    
-    axios.get(`${baseUrl}/api/days`)
-    .then((response) => {
-      setDays(response.data);
+    const baseUrl = 'http://localhost:8001/api'
+
+    // ALL promises need to resolve for component to render
+    const daysPromise = axios.get(`${baseUrl}/days`);
+    const appointmentsPromise = axios.get(`${baseUrl}/appointments`);
+
+    Promise.all([daysPromise, appointmentsPromise])
+    .then((all) => {
+      const days = all[0].data;
+      const appointments = all[1].data;
+
+      setState((prev) => ({...prev, days, appointments}))
     })
   }, []);
 
