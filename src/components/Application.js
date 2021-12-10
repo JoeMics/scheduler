@@ -38,8 +38,8 @@ const Application = (props) => {
   }, []);
 
   // Render appointments in Appointment components
-  const dailyAppointments = getAppointmentsForDay(state, state.day);
-  const renderedAppointments = dailyAppointments.map(appointment => (
+  const appointments = getAppointmentsForDay(state, state.day);
+  const schedule = appointments.map(appointment => (
       <Appointment {...appointment} key={appointment.id} />
     ));
     
@@ -66,7 +66,7 @@ const Application = (props) => {
         />
       </section>
       <section className="schedule">
-        {renderedAppointments}
+        {schedule}
         <Appointment key="last" time="5pm" />
       </section>
     </main>
