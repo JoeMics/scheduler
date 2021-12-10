@@ -56,8 +56,8 @@ const Application = (props) => {
     axios.get(`${baseUrl}/api/days`)
       .then((response) => {
         setDays(response.data)
-      }, [])
-  });
+      })
+  }, []);
 
   const renderedAppointmentsArray = appointments.map(appointment => (
     <Appointment {...appointment} key={appointment.id} />
