@@ -17,17 +17,22 @@ const useVisualMode = (initial) => {
   };
 
   const back = () => {
+    // prevents going back if at initial
+    if (history.length === 1) return;
+
     // go back to previous mode
     setHistory((prev) => {
       // prevents going back if at initial
-      if (prev.length === 1) {
-        return prev;
-      }
+      // if (prev.length === 1) {
+      //   return prev;
+      // }
 
       const newHistory = [...prev.slice(0, prev.length - 1)];
 
       // update current mode
       setMode(newHistory[newHistory.length - 1]);
+
+      // update history
       return newHistory;
     });
   };
