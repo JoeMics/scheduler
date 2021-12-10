@@ -12,6 +12,7 @@ const Application = (props) => {
     day: 'Monday',
     days: [],
     appointments: {},
+    interviewers: {},
   });
 
   // setDay function to pass into DayList component
@@ -33,7 +34,7 @@ const Application = (props) => {
       const appointments = all[1].data;
       const interviewers = all[2].data;
 
-      setState((prev) => ({...prev, days, appointments}));
+      setState((prev) => ({...prev, days, appointments, interviewers}));
     });
   }, []);
 
@@ -41,13 +42,13 @@ const Application = (props) => {
   const appointments = getAppointmentsForDay(state, state.day);
   const schedule = appointments.map(appointment => {
 
-    const interviewer = getInterview(appointment.interviewer);
+    const interview = getInterview(state, appointment.interview);
     
     return (
       <Appointment 
         {...appointment}
-        interviewer={interviewer}
-        key={appointment.id}  
+        key={appointment.id}
+        interview={interview}
       />
     );
   });
