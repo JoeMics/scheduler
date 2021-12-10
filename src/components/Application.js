@@ -53,10 +53,10 @@ const Application = (props) => {
     day: "Monday",
     days: [],
     appointments: {},
-  })
-  
+  });
   const setDay = (day) => setState({ ...state, day });
   const setDays = (days) => setState((prev) => ({ ...prev, days }))
+
   // API request to "days" array
   useEffect(() => {
     const baseUrl = 'http://localhost:8001'
@@ -66,8 +66,9 @@ const Application = (props) => {
       setDays(response.data);
     })
   }, []);
-  
-  const renderedAppointmentsArray = appointments.map(appointment => (
+
+  const dailyAppointments = [];
+  const renderedAppointments = dailyAppointments.map(appointment => (
       <Appointment {...appointment} key={appointment.id} />
     ));
     
@@ -94,7 +95,7 @@ const Application = (props) => {
         />
       </section>
       <section className="schedule">
-        {renderedAppointmentsArray}
+        {renderedAppointments}
         <Appointment key="last" time="5pm" />
       </section>
     </main>
