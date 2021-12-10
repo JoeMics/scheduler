@@ -14,3 +14,12 @@ export const getAppointmentsForDay = (state, day) => {
     return state.appointments[appointmentId];
   });
 };
+
+/*
+ * input: Object: state, String: day
+ *  
+ * output: Array of appointments for day
+ */
+export const getInterview = (interviewer) => {
+      
+};
