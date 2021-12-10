@@ -16,10 +16,17 @@ export const getAppointmentsForDay = (state, day) => {
 };
 
 /*
- * input: Object: state, String: day
+ * input: Object: state, Object: interview
  *  
- * output: Array of appointments for day
+ * output: Object { student, interviewer: { id, name, avatar}}
  */
-export const getInterview = (interviewer) => {
-      
+export const getInterview = (state, interview) => {
+  if (!interview) return null;
+
+  const  { student, interviewer } = interview;
+  
+  return {
+    student,
+    interviewer: state.interviewers[interviewer],
+  };
 };
