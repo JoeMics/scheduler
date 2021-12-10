@@ -3,60 +3,21 @@ import axios from "axios";
 
 import DayList from "./DayList";
 import Appointment from "./Appointment";
+import { getAppointmentsForDay } from "helpers/selectors";
 
 import "components/Application.scss";
 
-// const appointments = [
-//   {
-//     id: 1,
-//     time: "12pm",
-//   },
-//   {
-//     id: 2,
-//     time: "1pm",
-//     interview: {
-//       student: "Lydia Miller-Jones",
-//       interviewer:{
-//         id: 3,
-//         name: "Sylvia Palmer",
-//         avatar: "https://i.imgur.com/LpaY82x.png",
-//       }
-//     }
-//   },
-//   {
-//     id: 3,
-//     time: "2pm",
-//   },
-//   {
-//     id: 4,
-//     time: "3pm",
-//     interview: {
-//       student: "Archie Andrews",
-//       interviewer:{
-//         id: 4,
-//         name: "Cohana Roy",
-//         avatar: "https://i.imgur.com/FK8V841.jpg",
-//       }
-//     }
-//   },
-//   {
-//     id: 5,
-//     time: "4pm",
-//   }
-// ];
-
-
 const Application = (props) => {
-  // const [day, setDay] = useState('Monday');
-  // const [days, setDays] = useState([]);
   const [state, setState] = useState({
     day: "Monday",
     days: [],
     appointments: {},
   });
+
+  // setDay function to pass into DayList component
   const setDay = (day) => setState({ ...state, day });
 
-  // API request to "days" array
+  // API request to GET days, and appointments
   useEffect(() => {
     const baseUrl = 'http://localhost:8001/api'
 
@@ -73,7 +34,8 @@ const Application = (props) => {
     })
   }, []);
 
-  const dailyAppointments = [];
+  // Render appointments in Appointment components
+  const dailyAppointments = getAppointmentsForDay(state, state.day);
   const renderedAppointments = dailyAppointments.map(appointment => (
       <Appointment {...appointment} key={appointment.id} />
     ));
