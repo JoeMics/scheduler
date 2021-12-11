@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './Header';
 import Show from './Show';
 import Empty from './Empty';
+import Form from './Form';
 import useVisualMode from 'hooks/useVisualMode';
 
 import 'components/Appointment/styles.scss';
@@ -27,6 +28,13 @@ const Appointment = (props) => {
       {mode === SHOW && (
         <Show 
           {...interview}
+        />
+      )}
+      {mode === CREATE && (
+        <Form 
+          interviewers={[]}
+          onSave={() => {}}
+          onCancel={() => {}}
         />
       )}
     </article>
