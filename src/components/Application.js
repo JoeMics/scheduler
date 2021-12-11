@@ -35,7 +35,8 @@ const Application = (props) => {
       const interviewers = all[2].data;
 
       setState((prev) => ({...prev, days, appointments, interviewers}));
-    });
+    })
+    .catch((err) => console.log(err.message));
   }, []);
 
   // Render appointments in Appointment components
