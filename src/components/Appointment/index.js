@@ -34,7 +34,7 @@ const Appointment = (props) => {
         <Form 
           interviewers={[]}
           onSave={() => {}}
-          onCancel={() => {}}
+          onCancel={() => back()}
         />
       )}
     </article>
