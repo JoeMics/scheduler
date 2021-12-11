@@ -39,7 +39,7 @@ const Application = (props) => {
   }, []);
 
   // Render appointments in Appointment components
-  // Get list of appointments, and interviewers for the day
+  // Get arrays of appointments, and interviewers for the day
   const appointments = getAppointmentsForDay(state, state.day);
   const interviewers = getInterviewersForDay(state, state.day);
 

@@ -11,9 +11,10 @@ const Appointment = (props) => {
   /* props
   time: String ex. "4pm" 
   interview: Object
+  interviewers: Array of interviewers for the day
   */
  
-  const { time , interview } = props;
+  const { time , interview, interviewers } = props;
  
   const EMPTY = 'EMPTY';
   const SHOW = 'SHOW';
@@ -32,7 +33,7 @@ const Appointment = (props) => {
       )}
       {mode === CREATE && (
         <Form 
-          interviewers={[]}
+          interviewers={interviewers}
           onSave={() => {}}
           onCancel={() => back()}
         />
