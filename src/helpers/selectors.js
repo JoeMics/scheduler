@@ -18,7 +18,7 @@ export const getAppointmentsForDay = (state, day) => {
 /*
  * input: Object: state, String: day
  *  
- * output: Array of appointments for day
+ * output: Array of interviewers for day
  */
 export const getInterviewersForDay = (state, day) => {
   const selectedDay = state.days.find(appointment => appointment.name === day);
@@ -27,8 +27,8 @@ export const getInterviewersForDay = (state, day) => {
     return [];
   }
 
-  return selectedDay.appointments.map(appointmentId => {
-    return state.appointments[appointmentId];
+  return selectedDay.interviewers.map(interviewerId => {
+    return state.interviewers[interviewerId];
   });
 };
 

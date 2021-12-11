@@ -75,7 +75,7 @@ const state = {
       id: 10,
       name: 'Samantha Stanic',
       avatar: 'https://i.imgur.com/okB9WKC.jpg'
-      }
+    }
   }
 };
 
@@ -116,13 +116,14 @@ test('getInterviewersForDay returns an array', () => {
 
 test('getInterviewersForDay returns an array with a length matching the number of interviewers for that day', () => {
   const result = getInterviewersForDay(state, 'Monday');
-  expect(result.length).toEqual(3);
+  expect(result.length).toEqual(5);
 });
 
 test('getInterviewersForDay returns an array containing the correct interview objects', () => {
-  const [first, second] = getInterviewersForDay(state, 'Tuesday');
-  expect(first).toEqual(state.appointments['4']);
-  expect(second).toEqual(state.appointments['5']);
+  const [first, second, third] = getInterviewersForDay(state, 'Tuesday');
+  expect(first).toEqual(state.interviewers['2']);
+  expect(second).toEqual(state.interviewers['5']);
+  expect(third).toEqual(state.interviewers['3']);
 });
 
 test('getInterviewersForDay returns an empty array when the days data is empty', () => {
