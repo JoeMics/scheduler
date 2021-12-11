@@ -29,10 +29,10 @@ const useVisualMode = (initial) => {
         return prev;
       }
 
-      const newHistory = [...prev.slice(0, prev.length - 1)];
+      const newHistory = [...prev.slice(0, -1)];
 
       // update current mode
-      setMode(newHistory[newHistory.length - 1]);
+      setMode(...newHistory.slice(-1));
 
       // update history
       return newHistory;
@@ -43,6 +43,7 @@ const useVisualMode = (initial) => {
     mode,
     transition,
     back,
+    history,
   };
 };
 
