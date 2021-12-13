@@ -18,6 +18,19 @@ const Application = (props) => {
   // setDay function to pass into DayList component
   const setDay = (day) => setState({ ...state, day });
 
+  // changes local state when interview booked
+  const bookInterview = (id, interview) => {
+    console.log(id, interview);
+  };
+  
+  // captures name and interviewer to pass to onSave
+  const save = (name, interviewer) => {
+    const interview = {
+      student: name,
+      interviewer,
+    };
+  };
+
   // API request to GET days, and appointments
   useEffect(() => {
     const baseUrl = 'http://localhost:8001/api';
@@ -53,6 +66,8 @@ const Application = (props) => {
         key={appointment.id}
         interview={interview}
         interviewers={interviewers}
+        bookInterview={bookInterview}
+        save={save}
       />
     );
   });
