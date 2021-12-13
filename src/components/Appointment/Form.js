@@ -7,16 +7,10 @@ const Form = (props) => {
   student:String, optional
   interviewer:Number, optional
   interviewers:Array
-  onSave:Function
+  onSave:Function, from parent, handles saving
   onCancel:Function 
   */
-
-  /* props - creating
-  interviewers:Array
-  onSave:Function
-  onCancel:Function
-   */
-
+ 
   // Handles conditional props
   const [student, setStudent] = useState(props.student || '');
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
@@ -60,7 +54,7 @@ const Form = (props) => {
       <section className="appointment__card-right">
         <section className="appointment__actions">
           <Button onClick={cancel} danger>Cancel</Button>
-          <Button onClick={onSave} confirm>Save</Button>
+          <Button onClick={() => onSave(student, interviewer)} confirm>Save</Button>
         </section>
       </section>
     </main>

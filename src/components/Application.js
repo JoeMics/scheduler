@@ -20,15 +20,19 @@ const Application = (props) => {
 
   // changes local state when interview booked
   const bookInterview = (id, interview) => {
-    console.log(id, interview);
-  };
-  
-  // captures name and interviewer to pass to onSave
-  const save = (name, interviewer) => {
-    const interview = {
-      student: name,
-      interviewer,
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview },
     };
+
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+
+    setState(prev => ({ ...prev, appointments}));
+
+    console.log(id, interview);
   };
 
   // API request to GET days, and appointments
@@ -67,7 +71,6 @@ const Application = (props) => {
         interview={interview}
         interviewers={interviewers}
         bookInterview={bookInterview}
-        save={save}
       />
     );
   });
