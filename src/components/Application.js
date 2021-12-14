@@ -39,14 +39,9 @@ const Application = (props) => {
     };
 
     // return promise to handle 200 STATUS in Form component
-    return axios
-      .put(`${BASE_URL}/appointments/${id}`, appointment)
-      .then(() => {
-        setState((prev) => ({ ...prev, appointments }));
-      })
-      .catch((err) => {
-        throw new Error(err);
-      });
+    return axios.put(`${BASE_URL}/appointments/${id}`, appointment).then(() => {
+      setState((prev) => ({ ...prev, appointments }));
+    });
   };
 
   // sets interview data to null
