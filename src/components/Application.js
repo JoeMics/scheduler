@@ -26,6 +26,8 @@ const Application = (props) => {
 
   // changes local state when interview booked
   const bookInterview = (id, interview) => {
+    // TODO: handle no interviewer error
+
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview },
@@ -39,6 +41,29 @@ const Application = (props) => {
     // return promise to handle 200 STATUS in Form component
     return axios
       .put(`${BASE_URL}/appointments/${id}`, appointment)
+      .then(() => {
+        setState((prev) => ({ ...prev, appointments }));
+      })
+      .catch((err) => console.log(err.message));
+  };
+
+  // sets interview data to null
+  const cancelInterview = (id) => {
+    // new appointment
+    const appointment = {
+      ...state.appointments[id],
+      interview: null,
+    };
+
+    // new copy of state to update to
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment,
+    };
+
+    // make API call to delete appointment in db, then update state
+    return axios
+      .delete(`${BASE_URL}/appointments/${id}`)
       .then(() => {
         setState((prev) => ({ ...prev, appointments }));
       })
@@ -80,6 +105,7 @@ const Application = (props) => {
         interview={interview}
         interviewers={interviewers}
         bookInterview={bookInterview}
+        cancelInterview={cancelInterview}
       />
     );
   });

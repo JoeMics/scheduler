@@ -12,6 +12,7 @@ const EMPTY = "EMPTY";
 const SHOW = "SHOW";
 const CREATE = "CREATE";
 const SAVING = "SAVING";
+const DELETING = "DELETING";
 
 const Appointment = (props) => {
   /* props
@@ -22,7 +23,8 @@ const Appointment = (props) => {
   id: Number, id of appointment, 
   */
 
-  const { time, interview, interviewers, bookInterview, id } = props;
+  const { time, interview, interviewers, bookInterview, id, cancelInterview } =
+    props;
 
   const { mode, transition, back } = useVisualMode(interview ? SHOW : EMPTY);
 
@@ -33,7 +35,7 @@ const Appointment = (props) => {
       interviewer,
     };
 
-    // Show "saving" animation before API call
+    // Show SAVING animation before API call
     transition(SAVING);
 
     // transition to SHOW only after OK response
@@ -42,11 +44,23 @@ const Appointment = (props) => {
       .catch((err) => console.log(err.message));
   };
 
+  const deleteAppointment = () => {
+    // change to DELETING animation
+    transition(DELETING);
+
+    // call cancel interview with id
+    cancelInterview(id)
+      .then(() => {
+        transition(EMPTY);
+      })
+      .catch((err) => console.log(err.message));
+  };
+
   return (
     <article className="appointment">
       <Header time={time} />
       {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
-      {mode === SHOW && <Show {...interview} />}
+      {mode === SHOW && <Show {...interview} onDelete={deleteAppointment} />}
       {mode === CREATE && (
         <Form
           interviewers={interviewers}
@@ -54,7 +68,8 @@ const Appointment = (props) => {
           onCancel={() => back()}
         />
       )}
-      {mode === SAVING && <Status />}
+      {mode === SAVING && <Status message="Saving" />}
+      {mode === DELETING && <Status message="Deleting" />}
     </article>
   );
 };
