@@ -36,8 +36,6 @@ const Appointment = (props) => {
 
   // captures name and interviewer to pass to onSave
   const save = (name, interviewer) => {
-    if (!interviewer || !name) return transition(ERROR_SAVE);
-
     const interview = {
       student: name,
       interviewer,
