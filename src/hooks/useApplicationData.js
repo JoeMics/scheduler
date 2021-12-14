@@ -1,4 +1,5 @@
 import axios from "axios";
+import { getAppointmentsForDay } from "helpers/selectors";
 
 const { useState, useEffect } = require("react");
 
@@ -15,6 +16,28 @@ const useApplicationData = () => {
   // setDay function to pass into DayList component
   const setDay = (day) => setState({ ...state, day });
 
+  const updateSpots = () => {
+    setState((prev) => {
+      // count number of "nulls" in appointments array
+      const appointments = getAppointmentsForDay({ ...prev }, prev.day);
+      const newSpots = appointments.reduce(
+        (count, appointment) => (!appointment.interview ? (count += 1) : count),
+        0
+      );
+
+      // create updated Days array
+      const newDays = [...prev.days].map((day) => {
+        if (day.name === prev.day) {
+          return { ...day, spots: newSpots };
+        }
+        return day;
+      });
+
+      // return updated state
+      return { ...prev, days: newDays };
+    });
+  };
+
   // changes local state when interview booked
   const bookInterview = (id, interview) => {
     const appointment = {
@@ -30,6 +53,7 @@ const useApplicationData = () => {
     // return promise to handle 200 STATUS in Form component
     return axios.put(`${BASE_URL}/appointments/${id}`, appointment).then(() => {
       setState((prev) => ({ ...prev, appointments }));
+      updateSpots();
     });
   };
 
@@ -50,6 +74,7 @@ const useApplicationData = () => {
     // make API call to delete appointment in db, then update state
     return axios.delete(`${BASE_URL}/appointments/${id}`).then(() => {
       setState((prev) => ({ ...prev, appointments }));
+      updateSpots();
     });
   };
 

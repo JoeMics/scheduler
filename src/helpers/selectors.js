@@ -1,6 +1,5 @@
 /*
  * input: Object: state, String: day
- *
  * output: Array of appointments for day
  */
 export const getAppointmentsForDay = (state, day) => {
@@ -19,7 +18,6 @@ export const getAppointmentsForDay = (state, day) => {
 
 /*
  * input: Object: state, String: day
- *
  * output: Array of interviewers for day
  */
 export const getInterviewersForDay = (state, day) => {
@@ -38,7 +36,6 @@ export const getInterviewersForDay = (state, day) => {
 
 /*
  * input: Object: state, Object: interview
- *
  * output: Object { student, interviewer: { id, name, avatar}}
  */
 export const getInterview = (state, interview) => {
