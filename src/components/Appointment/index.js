@@ -6,10 +6,12 @@ import Form from "./Form";
 import useVisualMode from "hooks/useVisualMode";
 
 import "components/Appointment/styles.scss";
+import Status from "./Status";
 
 const EMPTY = "EMPTY";
 const SHOW = "SHOW";
 const CREATE = "CREATE";
+const SAVING = "SAVING";
 
 const Appointment = (props) => {
   /* props
@@ -31,6 +33,9 @@ const Appointment = (props) => {
       interviewer,
     };
 
+    // Show "saving" animation before API call
+    transition(SAVING);
+
     // transition to SHOW only after OK response
     bookInterview(id, interview)
       .then(() => transition(SHOW))
@@ -49,6 +54,7 @@ const Appointment = (props) => {
           onCancel={() => back()}
         />
       )}
+      {mode === SAVING && <Status />}
     </article>
   );
 };
