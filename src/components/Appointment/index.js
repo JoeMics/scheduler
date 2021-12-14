@@ -3,11 +3,11 @@ import Header from "./Header";
 import Show from "./Show";
 import Empty from "./Empty";
 import Form from "./Form";
+import Status from "./Status";
+import Confirm from "./Confirm";
 import useVisualMode from "hooks/useVisualMode";
 
 import "components/Appointment/styles.scss";
-import Status from "./Status";
-import Confirm from "./Confirm";
 
 const EMPTY = "EMPTY";
 const SHOW = "SHOW";
@@ -15,6 +15,7 @@ const CREATE = "CREATE";
 const SAVING = "SAVING";
 const DELETING = "DELETING";
 const CONFIRM = "CONFIRM";
+const EDIT = "EDIT";
 
 const Appointment = (props) => {
   /* props
@@ -63,13 +64,26 @@ const Appointment = (props) => {
       <Header time={time} />
       {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
       {mode === SHOW && (
-        <Show {...interview} onDelete={() => transition(CONFIRM)} />
+        <Show
+          {...interview}
+          onDelete={() => transition(CONFIRM)}
+          onEdit={() => transition(EDIT)}
+        />
       )}
       {mode === CREATE && (
         <Form
           interviewers={interviewers}
           onSave={save}
           onCancel={() => back()}
+        />
+      )}
+      {mode === EDIT && (
+        <Form
+          interviewers={interviewers}
+          onSave={save}
+          onCancel={() => back()}
+          interviewer={interview.interviewer.id}
+          student={interview.student}
         />
       )}
       {mode === SAVING && <Status message="Saving" />}
