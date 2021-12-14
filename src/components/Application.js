@@ -44,7 +44,9 @@ const Application = (props) => {
       .then(() => {
         setState((prev) => ({ ...prev, appointments }));
       })
-      .catch((err) => console.log(err.message));
+      .catch((err) => {
+        throw new Error(err);
+      });
   };
 
   // sets interview data to null
@@ -67,7 +69,9 @@ const Application = (props) => {
       .then(() => {
         setState((prev) => ({ ...prev, appointments }));
       })
-      .catch((err) => console.log(err.message));
+      .catch((err) => {
+        throw new Error(err);
+      });
   };
 
   // API request to GET days, and appointments

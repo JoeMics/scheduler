@@ -42,7 +42,7 @@ const Appointment = (props) => {
     transition(SAVING);
 
     // transition to SHOW only after OK response
-    bookInterview(id, interview)
+    return bookInterview(id, interview)
       .then(() => transition(SHOW))
       .catch((err) => console.log(err.message));
   };
@@ -52,7 +52,7 @@ const Appointment = (props) => {
     transition(DELETING);
 
     // call cancel interview with id
-    cancelInterview(id)
+    return cancelInterview(id)
       .then(() => {
         transition(EMPTY);
       })
