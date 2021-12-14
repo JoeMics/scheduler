@@ -64,14 +64,9 @@ const Application = (props) => {
     };
 
     // make API call to delete appointment in db, then update state
-    return axios
-      .delete(`${BASE_URL}/appointments/${id}`)
-      .then(() => {
-        setState((prev) => ({ ...prev, appointments }));
-      })
-      .catch((err) => {
-        throw new Error(err);
-      });
+    return axios.delete(`${BASE_URL}/appointments/${id}`).then(() => {
+      setState((prev) => ({ ...prev, appointments }));
+    });
   };
 
   // API request to GET days, and appointments
