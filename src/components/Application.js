@@ -7,6 +7,8 @@ import { getAppointmentsForDay, getInterview, getInterviewersForDay } from 'help
 
 import 'components/Application.scss';
 
+const BASE_URL = 'http://localhost:8001/api';
+
 const Application = (props) => {
   const [state, setState] = useState({
     day: 'Monday',
@@ -30,20 +32,22 @@ const Application = (props) => {
       [id]: appointment
     };
 
-    setState(prev => ({ ...prev, appointments}));
-
-    console.log(id, interview);
-  };
+    // return promise to handle 200 STATUS in Form component
+    return axios.put(`${BASE_URL}/appointments/${id}`, appointment)
+      .then(() => {
+        setState(prev => ({ ...prev, appointments}));
+      })
+      .catch(err => console.log(err.message));
+    };
 
   // API request to GET days, and appointments
   useEffect(() => {
-    const baseUrl = 'http://localhost:8001/api';
 
     // ALL promises need to resolve for component to render
     const statePromises = [
-      axios.get(`${baseUrl}/days`),
-      axios.get(`${baseUrl}/appointments`),
-      axios.get(`${baseUrl}/interviewers`)
+      axios.get(`${BASE_URL}/days`),
+      axios.get(`${BASE_URL}/appointments`),
+      axios.get(`${BASE_URL}/interviewers`)
     ];
 
     Promise.all(statePromises).then((all) => {

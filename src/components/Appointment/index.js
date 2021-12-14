@@ -31,9 +31,9 @@ const Appointment = (props) => {
       interviewer,
     };
 
-    bookInterview(id ,interview);
-
-    transition(SHOW);
+    // transition to SHOW only after OK response
+    bookInterview(id ,interview).then(() => transition(SHOW))
+      .catch((err) => console.log(err.message));
   };
   
   return (
