@@ -1,17 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
-import DayList from './DayList';
-import Appointment from './Appointment';
-import { getAppointmentsForDay, getInterview, getInterviewersForDay } from 'helpers/selectors';
+import DayList from "./DayList";
+import Appointment from "./Appointment";
+import {
+  getAppointmentsForDay,
+  getInterview,
+  getInterviewersForDay,
+} from "helpers/selectors";
 
-import 'components/Application.scss';
+import "components/Application.scss";
 
-const BASE_URL = 'http://localhost:8001/api';
+const BASE_URL = "http://localhost:8001/api";
 
 const Application = (props) => {
   const [state, setState] = useState({
-    day: 'Monday',
+    day: "Monday",
     days: [],
     appointments: {},
     interviewers: {},
@@ -29,35 +33,36 @@ const Application = (props) => {
 
     const appointments = {
       ...state.appointments,
-      [id]: appointment
+      [id]: appointment,
     };
 
     // return promise to handle 200 STATUS in Form component
-    return axios.put(`${BASE_URL}/appointments/${id}`, appointment)
+    return axios
+      .put(`${BASE_URL}/appointments/${id}`, appointment)
       .then(() => {
-        setState(prev => ({ ...prev, appointments}));
+        setState((prev) => ({ ...prev, appointments }));
       })
-      .catch(err => console.log(err.message));
-    };
+      .catch((err) => console.log(err.message));
+  };
 
   // API request to GET days, and appointments
   useEffect(() => {
-
     // ALL promises need to resolve for component to render
     const statePromises = [
       axios.get(`${BASE_URL}/days`),
       axios.get(`${BASE_URL}/appointments`),
-      axios.get(`${BASE_URL}/interviewers`)
+      axios.get(`${BASE_URL}/interviewers`),
     ];
 
-    Promise.all(statePromises).then((all) => {
-      const days = all[0].data;
-      const appointments = all[1].data;
-      const interviewers = all[2].data;
+    Promise.all(statePromises)
+      .then((all) => {
+        const days = all[0].data;
+        const appointments = all[1].data;
+        const interviewers = all[2].data;
 
-      setState((prev) => ({...prev, days, appointments, interviewers}));
-    })
-    .catch((err) => console.log(err.message));
+        setState((prev) => ({ ...prev, days, appointments, interviewers }));
+      })
+      .catch((err) => console.log(err.message));
   }, []);
 
   // Render appointments in Appointment components
@@ -65,11 +70,11 @@ const Application = (props) => {
   const appointments = getAppointmentsForDay(state, state.day);
   const interviewers = getInterviewersForDay(state, state.day);
 
-  const schedule = appointments.map(appointment => {  
+  const schedule = appointments.map((appointment) => {
     const interview = getInterview(state, appointment.interview);
-    
+
     return (
-      <Appointment 
+      <Appointment
         {...appointment}
         key={appointment.id}
         interview={interview}
@@ -78,7 +83,7 @@ const Application = (props) => {
       />
     );
   });
-    
+
   return (
     <main className="layout">
       <section className="sidebar">
@@ -86,14 +91,10 @@ const Application = (props) => {
           className="sidebar--centered"
           src="images/logo.png"
           alt="Interview Scheduler"
-        />  
+        />
         <hr className="sidebar__separator sidebar--centered" />
         <nav className="sidebar__menu">
-          <DayList 
-            days={state.days}
-            value={state.day}
-            onChange={setDay}
-          />
+          <DayList days={state.days} value={state.day} onChange={setDay} />
         </nav>
         <img
           className="sidebar__lhl sidebar--centered"

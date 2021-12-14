@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import Button from 'components/Button';
-import InterviewerList from 'components/InterviewerList';
+import React, { useState } from "react";
+import Button from "components/Button";
+import InterviewerList from "components/InterviewerList";
 
 const Form = (props) => {
   /* props - editing
@@ -10,20 +10,16 @@ const Form = (props) => {
   onSave:Function, from parent, handles saving
   onCancel:Function 
   */
- 
+
   // Handles conditional props
-  const [student, setStudent] = useState(props.student || '');
+  const [student, setStudent] = useState(props.student || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
 
-  const {
-    interviewers,
-    onSave,
-    onCancel,
-  } = props;
+  const { interviewers, onSave, onCancel } = props;
 
   // Resets form fields
   const reset = () => {
-    setStudent('');
+    setStudent("");
     setInterviewer(null);
   };
 
@@ -35,14 +31,14 @@ const Form = (props) => {
   return (
     <main className="appointment__card appointment__card--create">
       <section className="appointment__card-left">
-        <form autoComplete="off" onSubmit={event => event.preventDefault()}>
+        <form autoComplete="off" onSubmit={(event) => event.preventDefault()}>
           <input
             className="appointment__create-input text--semi-bold"
             name="name"
             type="text"
             placeholder="Enter Student Name"
             value={student}
-            onChange={event => setStudent(event.target.value)}
+            onChange={(event) => setStudent(event.target.value)}
           />
         </form>
         <InterviewerList
@@ -53,8 +49,12 @@ const Form = (props) => {
       </section>
       <section className="appointment__card-right">
         <section className="appointment__actions">
-          <Button onClick={cancel} danger>Cancel</Button>
-          <Button onClick={() => onSave(student, interviewer)} confirm>Save</Button>
+          <Button onClick={cancel} danger>
+            Cancel
+          </Button>
+          <Button onClick={() => onSave(student, interviewer)} confirm>
+            Save
+          </Button>
         </section>
       </section>
     </main>

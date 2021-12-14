@@ -1,5 +1,5 @@
-import React from 'react';
-import DayListItem from './DayListItem';
+import React from "react";
+import DayListItem from "./DayListItem";
 
 const DayList = (props) => {
   /* props
@@ -14,7 +14,7 @@ const DayList = (props) => {
   */
   const { days, value, onChange } = props;
 
-  const dayListItems = days.map(day => {
+  const dayListItems = days.map((day) => {
     return (
       <DayListItem
         key={day.id}
@@ -26,11 +26,7 @@ const DayList = (props) => {
     );
   });
 
-  return (
-    <ul>
-      {dayListItems}
-    </ul>
-  );
+  return <ul>{dayListItems}</ul>;
 };
 
 export default DayList;

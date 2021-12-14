@@ -1,10 +1,10 @@
-/* 
+/*
  * take an initial mode
  * set "mode" state with intial mode provided
- * return an object with mode property 
+ * return an object with mode property
  */
 
-import { useState } from 'react';
+import { useState } from "react";
 
 const useVisualMode = (initial) => {
   const [mode, setMode] = useState(initial);
@@ -12,7 +12,7 @@ const useVisualMode = (initial) => {
 
   const transition = (newMode, replace = false) => {
     if (!replace) {
-      // add mode to the history 
+      // add mode to the history
       setHistory((prev) => [...prev, newMode]);
     } else {
       setHistory((prev) => [...prev.slice(0, prev.length - 1), newMode]);
