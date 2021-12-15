@@ -55,31 +55,6 @@ const state = {
       name: "Sven Jones",
       avatar: "https://i.imgur.com/twYrpay.jpg",
     },
-    6: {
-      id: 6,
-      name: "Susan Reynolds",
-      avatar: "https://i.imgur.com/TdOAdde.jpg",
-    },
-    7: {
-      id: 7,
-      name: "Alec Quon",
-      avatar: "https://i.imgur.com/3tVgsra.jpg",
-    },
-    8: {
-      id: 8,
-      name: "Viktor Jain",
-      avatar: "https://i.imgur.com/iHq8K8Z.jpg",
-    },
-    9: {
-      id: 9,
-      name: "Lindsay Chu",
-      avatar: "https://i.imgur.com/nPywAp1.jpg",
-    },
-    10: {
-      id: 10,
-      name: "Samantha Stanic",
-      avatar: "https://i.imgur.com/okB9WKC.jpg",
-    },
   },
 };
 

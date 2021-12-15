@@ -3,8 +3,6 @@ import { getAppointmentsForDay } from "helpers/selectors";
 
 const { useState, useEffect } = require("react");
 
-const BASE_URL = "http://localhost:8001/api";
-
 const useApplicationData = () => {
   const [state, setState] = useState({
     day: "Monday",
@@ -50,7 +48,7 @@ const useApplicationData = () => {
     };
 
     // return promise to handle 200 STATUS in Form component
-    return axios.put(`${BASE_URL}/appointments/${id}`, appointment).then(() => {
+    return axios.put(`/api/appointments/${id}`, appointment).then(() => {
       setState((prev) => {
         const days = updateSpots(prev, appointments);
 
@@ -74,7 +72,7 @@ const useApplicationData = () => {
     };
 
     // make API call to delete appointment in db, then update state
-    return axios.delete(`${BASE_URL}/appointments/${id}`).then(() => {
+    return axios.delete(`api/appointments/${id}`).then(() => {
       setState((prev) => {
         const days = updateSpots(prev, appointments);
         return { ...prev, appointments, days };
@@ -86,9 +84,9 @@ const useApplicationData = () => {
   useEffect(() => {
     // ALL promises need to resolve for component to render
     const statePromises = [
-      axios.get(`${BASE_URL}/days`),
-      axios.get(`${BASE_URL}/appointments`),
-      axios.get(`${BASE_URL}/interviewers`),
+      axios.get(`/api/days`),
+      axios.get(`/api/appointments`),
+      axios.get(`/api/interviewers`),
     ];
 
     Promise.all(statePromises)
