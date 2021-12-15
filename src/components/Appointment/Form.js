@@ -24,6 +24,11 @@ const Form = (props) => {
       return;
     }
 
+    if (!interviewer) {
+      setError("Please choose an interviewer");
+      return;
+    }
+
     setError("");
     onSave(student, interviewer);
   };
