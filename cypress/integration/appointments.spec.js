@@ -18,6 +18,19 @@ describe("Appointments", () => {
 
     cy.contains("Save").click();
 
+    cy.contains("Saving").should("exist");
+    cy.contains("Saving").should("not.exist");
+
+    cy.contains(".appointment__card--show", interviewer);
+    cy.contains(".appointment__card--show", student);
+    cy.contains("[data-testid=day]", "Monday").should(
+      "have.class",
+      "day-list__item--full"
+    );
+    cy.contains("[data-testid=day]", "no spots remaining");
+
+    cy.reload();
+
     cy.contains(".appointment__card--show", interviewer);
     cy.contains(".appointment__card--show", student);
     cy.contains("[data-testid=day]", "Monday").should(
@@ -37,6 +50,9 @@ describe("Appointments", () => {
     cy.get(`[alt="${interviewer}"]`).click();
 
     cy.contains("Save").click();
+
+    cy.contains("Saving").should("exist");
+    cy.contains("Saving").should("not.exist");
 
     cy.contains(".appointment__card--show", interviewer);
     cy.contains(".appointment__card--show", student);
@@ -65,5 +81,32 @@ describe("Appointments", () => {
       "day-list__item--full"
     );
     cy.contains("[data-testid=day]", "2 spots remaining");
+  });
+
+  it("should return to the Form or Show view when the user presses the close button of the error", () => {
+    const student = "Lydia Miller-Jones";
+    const interviewer = "Sylvia Palmer";
+
+    cy.get('img[alt="Add"]').first().click();
+
+    cy.get("[data-testid=student-name-input]").type(student);
+    cy.get(`[alt="${interviewer}"]`).click();
+
+    cy.intercept("api/appointments/*", { forceNetworkError: true });
+    cy.contains("Save").click();
+
+    cy.contains("Error").should("exist");
+
+    // Goes back to Form
+    cy.get('[alt="Close"]').first().click();
+    cy.get("main.appointment__card--create").should("exist");
+    cy.contains("Cancel").click();
+
+    // Goes back to Show
+    cy.get('img[alt="Delete"]').first().click({ force: true });
+    cy.contains("Confirm").click();
+    cy.contains("Error").should("exist");
+    cy.get('[alt="Close"]').first().click();
+    cy.contains(".appointment__card--show", "Archie Cohen");
   });
 });
