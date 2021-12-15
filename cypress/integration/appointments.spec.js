@@ -20,6 +20,11 @@ describe("Appointments", () => {
 
     cy.contains(".appointment__card--show", interviewer);
     cy.contains(".appointment__card--show", student);
+    cy.contains("[data-testid=day]", "Monday").should(
+      "have.class",
+      "day-list__item--full"
+    );
+    cy.contains("[data-testid=day]", "no spots remaining");
   });
 
   it("should edit an interview", () => {
@@ -35,6 +40,11 @@ describe("Appointments", () => {
 
     cy.contains(".appointment__card--show", interviewer);
     cy.contains(".appointment__card--show", student);
+    cy.contains("[data-testid=day]", "Monday").should(
+      "not.have.class",
+      "day-list__item--full"
+    );
+    cy.contains("[data-testid=day]", "1 spot remaining");
   });
 
   it("should cancel an interview", () => {
@@ -49,5 +59,11 @@ describe("Appointments", () => {
     cy.contains("Deleting").should("not.exist");
 
     cy.contains("appointment-card--show", student).should("not.exist");
+    cy.contains("appointment-card--show", interviewer).should("not.exist");
+    cy.contains("[data-testid=day]", "Monday").should(
+      "not.have.class",
+      "day-list__item--full"
+    );
+    cy.contains("[data-testid=day]", "2 spots remaining");
   });
 });
