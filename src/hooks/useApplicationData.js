@@ -1,4 +1,5 @@
 import axios from "axios";
+import { getAppointmentsForDay } from "helpers/selectors";
 
 const { useState, useEffect } = require("react");
 
@@ -16,12 +17,17 @@ const useApplicationData = () => {
   const setDay = (day) => setState({ ...state, day });
 
   const updateSpots = (state, appointments) => {
-    // get correct day object from state
-    const day = state.days.find((day) => day.name === state.day);
+    // // get correct day object from state
+    // const day = state.days.find((day) => day.name === state.day);
 
-    // make appointments array with updated appointments object
-    const appointmentsArray = day.appointments.map(
-      (appointment) => appointments[appointment]
+    // // make appointments array with updated appointments object
+    // const appointmentsArray = day.appointments.map(
+    //   (appointment) => appointments[appointment]
+    // );
+
+    const appointmentsArray = getAppointmentsForDay(
+      { ...state, appointments },
+      state.day
     );
 
     // count number of "nulls" in appointments array
