@@ -1,5 +1,4 @@
 import axios from "axios";
-import { getAppointmentsForDay } from "helpers/selectors";
 
 const { useState, useEffect } = require("react");
 
@@ -16,25 +15,27 @@ const useApplicationData = () => {
   // setDay function to pass into DayList component
   const setDay = (day) => setState({ ...state, day });
 
-  const updateSpots = () => {
-    setState((prev) => {
-      // count number of "nulls" in appointments array
-      const appointments = getAppointmentsForDay({ ...prev }, prev.day);
-      const newSpots = appointments.reduce(
-        (count, appointment) => (!appointment.interview ? (count += 1) : count),
-        0
-      );
+  const updateSpots = (state, appointments) => {
+    // get correct day object from state
+    const day = state.days.find((day) => day.name === state.day);
 
-      // create updated Days array
-      const newDays = [...prev.days].map((day) => {
-        if (day.name === prev.day) {
-          return { ...day, spots: newSpots };
-        }
-        return day;
-      });
+    // make appointments array with updated appointments object
+    const appointmentsArray = day.appointments.map(
+      (appointment) => appointments[appointment]
+    );
 
-      // return updated state
-      return { ...prev, days: newDays };
+    // count number of "nulls" in appointments array
+    const newSpots = appointmentsArray.reduce(
+      (count, appointment) => (!appointment.interview ? (count += 1) : count),
+      0
+    );
+
+    // return updated Days array
+    return [...state.days].map((day) => {
+      if (day.name === state.day) {
+        return { ...day, spots: newSpots };
+      }
+      return day;
     });
   };
 
@@ -52,8 +53,11 @@ const useApplicationData = () => {
 
     // return promise to handle 200 STATUS in Form component
     return axios.put(`${BASE_URL}/appointments/${id}`, appointment).then(() => {
-      setState((prev) => ({ ...prev, appointments }));
-      updateSpots();
+      setState((prev) => {
+        const days = updateSpots(prev, appointments);
+
+        return { ...prev, appointments, days };
+      });
     });
   };
 
@@ -73,8 +77,10 @@ const useApplicationData = () => {
 
     // make API call to delete appointment in db, then update state
     return axios.delete(`${BASE_URL}/appointments/${id}`).then(() => {
-      setState((prev) => ({ ...prev, appointments }));
-      updateSpots();
+      setState((prev) => {
+        const days = updateSpots(prev, appointments);
+        return { ...prev, appointments, days };
+      });
     });
   };
 
