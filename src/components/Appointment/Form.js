@@ -31,6 +31,7 @@ const Form = (props) => {
   // Resets form fields
   const reset = () => {
     setStudent("");
+    setError("");
     setInterviewer(null);
   };
 
