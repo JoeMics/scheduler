@@ -72,7 +72,7 @@ const useApplicationData = () => {
     };
 
     // make API call to delete appointment in db, then update state
-    return axios.delete(`api/appointments/${id}`).then(() => {
+    return axios.delete(`/api/appointments/${id}`).then(() => {
       setState((prev) => {
         const days = updateSpots(prev, appointments);
         return { ...prev, appointments, days };
