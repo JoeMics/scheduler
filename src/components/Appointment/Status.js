@@ -2,7 +2,8 @@ import React from "react";
 
 const Status = (props) => {
   /* props
-  message: String, ex. "Deleting" */
+   * message: String, ex. "Deleting"
+   */
   const { message } = props;
 
   return (

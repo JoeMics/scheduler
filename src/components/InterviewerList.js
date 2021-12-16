@@ -6,10 +6,10 @@ import "components/InterviewerList.scss";
 
 const InterviewerList = (props) => {
   /* props:
-  interviewers: array of objects
-  onChange: function that accepts interviewer id
-    pass down to InterviewerListItem
-  value:number, id of selected interviewer
+   * interviewers: Array of objects
+   * onChange: Function that accepts interviewer id
+   *   pass down to InterviewerListItem
+   * value: Number, id of selected interviewer
    */
   const { interviewers, onChange, value } = props;
 

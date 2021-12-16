@@ -3,9 +3,9 @@ import React from "react";
 
 const Confirm = (props) => {
   /* props
-  message: String, ex. "Are you sure you want to delete?"
-  onConfirm: Function, when confirm clicked
-  onCancel: Function, when cancel clicked
+   * message: String, ex. "Are you sure you want to delete?"
+   * onConfirm: Function, when confirm clicked
+   * onCancel: Function, when cancel clicked
    */
   const { message, onConfirm, onCancel } = props;
 

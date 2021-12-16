@@ -2,7 +2,7 @@ import React from "react";
 
 const Header = (props) => {
   /* props
-  time: String, time of appointment ex. 12pm
+   * time: String, time of appointment ex. 12pm
    */
   const { time } = props;
 

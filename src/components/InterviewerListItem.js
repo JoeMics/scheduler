@@ -5,10 +5,10 @@ import "components/InterviewerListItem.scss";
 
 const InterviewerListItem = (props) => {
   /*
-   * name: str
-   * avatar: str - url
-   * setInterviewer: function to set the interviewer
-   * selected: bool
+   * name: String
+   * avatar: String - url
+   * setInterviewer: Function to set the interviewer
+   * selected: Boolean
    */
 
   const { name, avatar, setInterviewer, selected } = props;

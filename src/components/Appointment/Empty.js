@@ -2,7 +2,8 @@ import React from "react";
 
 const Empty = (props) => {
   /* props
-  onAdd: function */
+   * onAdd: Function
+   */
   const { onAdd } = props;
 
   return (

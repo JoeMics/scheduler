@@ -4,6 +4,13 @@ import classNames from "classnames";
 import "components/Button.scss";
 
 const Button = (props) => {
+  /* props
+   * confirm: Boolean
+   * danger: Boolean
+   * disabled: Boolean
+   * onClick: Function
+   * children: String, shown on Button ex. "Confirm"
+   */
   const buttonClass = classNames({
     button: true,
     "button--confirm": props.confirm,

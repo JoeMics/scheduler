@@ -3,13 +3,13 @@ import Button from "components/Button";
 import InterviewerList from "components/InterviewerList";
 
 const Form = (props) => {
-  /* props - editing
-  student:String, optional
-  interviewer:Number, optional
-  interviewers:Array
-  onSave:Function, from parent, handles saving
-  onCancel:Function 
-  */
+  /* props
+   * student:String, optional
+   * interviewer:Number, optional
+   * interviewers:Array
+   * onSave:Function, from parent, handles saving
+   * onCancel:Function
+   */
 
   // Handles conditional props
   const [student, setStudent] = useState(props.student || "");

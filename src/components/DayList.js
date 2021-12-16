@@ -3,15 +3,10 @@ import DayListItem from "./DayListItem";
 
 const DayList = (props) => {
   /* props
-  days: Array of day objects
-    day: {
-      id: 1,
-      name: "Monday",
-      spots: 2,
-    } 
-  value: currently selected element. ex "Monday"
-  onChange: function to change value
-  */
+   * days: Array of day objects
+   * value: Boolean, currently selected element. ex "Monday"
+   * onChange: Function to change value
+   */
   const { days, value, onChange } = props;
 
   const dayListItems = days.map((day) => {

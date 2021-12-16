@@ -2,10 +2,10 @@ import React from "react";
 
 const Show = (props) => {
   /* props
-  student: String, ex. "Lydia Miller-Jones"
-  interviewer: Object
-  onEdit: Function, called when Edit button clicked
-  onDelete: Function called when Delete button clicked
+   * student: String, ex. "Lydia Miller-Jones"
+   * interviewer: Object
+   * onEdit: Function, called when Edit button clicked
+   * onDelete: Function called when Delete button clicked
    */
   const { student, interviewer, onEdit, onDelete } = props;
 

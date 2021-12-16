@@ -22,12 +22,12 @@ const ERROR_DELETE = "ERROR_DELETE";
 
 const Appointment = (props) => {
   /* props
-  time: String ex. "4pm" 
-  interview: Object
-  interviewers: Array of interviewers for the day
-  bookInterview: Function, to change state when interview is booked
-  id: Number, id of appointment, 
-  */
+   * time: String ex. "4pm"
+   * interview: Object
+   * interviewers: Array of interviewers for the day
+   * bookInterview: Function, to change state when interview is booked
+   * id: Number, id of appointment,
+   */
 
   const { time, interview, interviewers, bookInterview, id, cancelInterview } =
     props;

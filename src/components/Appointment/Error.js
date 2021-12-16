@@ -2,8 +2,8 @@ import React from "react";
 
 const Error = (props) => {
   /* props
-  message: String, ex. "Could not delete appointment"
-  onClose: Function, when close button clicked
+   * message: String, ex. "Could not delete appointment"
+   * onClose: Function, when close button clicked
    */
   const { message, onClose } = props;
 

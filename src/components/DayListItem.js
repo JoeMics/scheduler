@@ -4,6 +4,12 @@ import classNames from "classnames";
 import "components/DayListItem.scss";
 
 const DayListItem = (props) => {
+  /* props:
+   * name: String
+   * selected: Boolean
+   * spots: Number
+   * setDay: Function to call to select day
+   */
   const { name, selected, spots, setDay } = props;
 
   const dayClass = classNames({
